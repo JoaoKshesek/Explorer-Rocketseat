@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --bg-body: #FFFFFF;
+    --bg-footer: #3F3D56;
+    --bg-line: #ECEFF2;
+    --fc-primary: #828282;
+    --fc-secondary: #3F3D56;
+    --fc-span: #EE24FF;
+    --ff-title: 'Dosis', sans-serif;
+    --ff-body: 'Open Sans', sans-serif;
+}
+body {
+    background: var(--bg-body);
+    width: 100vw;
+    height: 100%;
+}
+main {
+    margin: 64px auto 32px;
+    width: 626px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main img {
+    width: 350px;
+}
+main h1 {
+    margin: 32px 0 16px;
+    font-family: var(--ff-title);
+    color: var(--fc-secondary);
+    font-size: 32px;
+    font-weight: 500;
+}
+main h1 span {
+    color: var(--fc-span);
+    font-weight: 700;
+}
+main p {
+    margin-bottom: 32px;
+    font-family: var(--ff-body);
+    color: var(--fc-primary);
+    font-weight: 400;
+    font-size: 15px;
+    width: 540px;
+    text-align: center;
+}
+main p span {
+    color: var(--fc-secondary);
+    font-weight: 700;
+}
+hr {
+    width: 391px;
+    margin-top: 32px;
+    border: 1px solid #ECEFF2;
+}
+footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+footer ul {
+    display: flex;
+    justify-content: center;
+    width: 391px;
+    list-style: none;
+    gap: 42px;
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 15px;
+}
+footer ul a {
+    color: var(--fc-secondary);
+    text-decoration: none;
+}
+footer ul a:hover {
+    filter: brightness(1.75);
+}
+footer img {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+}
