@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    --fc-navigation: #C4C4CC;
+    --fc-navigation-active: #FFFFFF;
+    --fc-body: #E1E1E6;
+    --fc-button: #FFFFFF;
+    --fc-button-hover: #02799D;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: #101010;
+}
+
+nav {
+    margin: 4rem auto 4rem 7.2rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+    list-style: none;
+    font-size: 2.1rem;
+    line-height: 2.1rem;
+}
+
+ul li a{
+    text-decoration: none;
+    color: var(--fc-navigation);
+}
+
+h1 {
+    font-size: 4.8rem;
+    font-weight: 700;
+    line-height: 6rem;
+    color: var(--fc-body);
+
+}
+
+p {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2.9rem;
+    color: var(--fc-body);
+}
+
+.active {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--fc-navigation-active);
+}
+
+.home, .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20rem;
+}
+
+.home a {
+    margin-top: 2.4rem;
+    padding: 1.2rem 3.2rem;
+    background: none;
+    cursor: pointer;
+    border: 2px solid var(--fc-button);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    color: var(--fc-button);
+    transition: ease-in-out 200ms;
+    text-decoration: none;
+}
+
+.home a:hover {
+    color: var(--fc-button-hover);
+    background: var(--fc-button);
+}
+
+.universe, .exploration {
+    width: 64.8rem;
+    margin-left: 10.2rem;
+    margin-top: 9rem;
+}
+
+.universe p, .exploration p {
+    margin-top: 1.6rem;
+}
+
+.bg-home {
+    background: url(../assets/mountains-universe-1.png);
+}
+
+.bg-universe {
+    background: url(../assets/mountains-universe-2.png);
+}
+
+.bg-exploration {
+    background: url(../assets/mountains-universe-3.png);
+}
+
+.bg-home, .bg-universe, .bg-exploration {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    
