@@ -1,20 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
+import { Home } from "../pages/Home";
+import { Profile } from "../pages/Profile";
+import { CreateMovie } from "../pages/CreateMovie";
+import { MoviePreview } from "../pages/MoviePreview";
 
-
-import { Home } from '../pages/Home'
-import { New } from '../pages/New'
-import { Profile } from '../pages/Profile'
-
-
-
-export function AppRoutes(){
-    return(
-        <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/new" element={<New />}/>
-            <Route path="/profile" element={<Profile />}/>
-
-
-        </Routes>
-    )
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/create-movie" element={<CreateMovie />} />
+      <Route path="/movie-preview" element={<MoviePreview />} />
+    </Routes>
+  );
 }

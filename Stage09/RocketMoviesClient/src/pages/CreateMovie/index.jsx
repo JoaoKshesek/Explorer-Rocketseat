@@ -9,7 +9,7 @@ import { MovieItem } from "../../components/MovieItem";
 
 import { Container,Content, Form, Markers, Buttons } from "./styles";
 
-export function New() {
+export function CreateMovie() {
   return (
     <Container>
       <Header />

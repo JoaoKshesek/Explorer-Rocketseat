@@ -18,7 +18,6 @@ import { Tag } from "../../components/Tag";
 
 import star from "../../assets/star.svg";
 import starFilled from "../../assets/star-filled.svg";
-import { useTheme } from "styled-components";
 
 const movies = [
   {
@@ -86,18 +85,14 @@ const movies = [
   },
 ];
 
-const stars = [1, 2, 3, 4];
-
 export function Home() {
-
-  const theme = useTheme()
   return (
     <Container>
       <Header />
       <Brand>
         <h1>Meus filmes</h1>
         <NewMovie>
-          <Link to="/new">
+          <Link to="/create-movie">
             <FiPlus />
             Adicionar filme
           </Link>
@@ -106,24 +101,26 @@ export function Home() {
       <Content>
         <main>
           {movies.map((movie) => (
-            <Section>
-              <Title>{movie.title}</Title>
-              <Rating>
-                <ReactStars
-                  value={movie.rating}
-                  filledIcon={<img src={starFilled} width={20}height={20}/>}
-                  emptyIcon={<img src={star} width={20}height={20}/>}
-                />
-              </Rating>
+            <Link to={`/movie-preview`} style={{ color: "#F4EDE8" }}>
+              <Section>
+                <Title>{movie.title}</Title>
+                <Rating>
+                  <ReactStars
+                    value={movie.rating}
+                    filledIcon={<img src={starFilled} width={20} height={20} />}
+                    emptyIcon={<img src={star} width={20} height={20} />}
+                  />
+                </Rating>
 
-              <Description>{movie.description}</Description>
+                <Description>{movie.description}</Description>
 
-              <Tags>
-                {movie.tags.map((tag) => (
-                  <Tag title={tag.name} />
-                ))}
-              </Tags>
-            </Section>
+                <Tags>
+                  {movie.tags.map((tag) => (
+                    <Tag title={tag.name} />
+                  ))}
+                </Tags>
+              </Section>
+            </Link>
           ))}
         </main>
       </Content>
