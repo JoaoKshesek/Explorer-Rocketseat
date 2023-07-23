@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ReactStars from "react-rating-star-with-type";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -11,84 +12,87 @@ import {
   Rating,
   Description,
   Tags,
+  Card,
+  Header,
+  HeaderContent,
+  Profile
 } from "./styles";
-
-import { Header } from "../../components/Header";
 import { Tag } from "../../components/Tag";
-
 import star from "../../assets/star.svg";
 import starFilled from "../../assets/star-filled.svg";
-
-const movies = [
-  {
-    id: 1,
-    title: "Interestellar",
-    description:
-      'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy. Além de Cooper, a tripulação da Endurance é formada pela bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.',
-    rating: 4,
-    tags: [
-      {
-        id: 1,
-        name: "Ficção Científica",
-      },
-      {
-        id: 2,
-        name: "Drama",
-      },
-      {
-        id: 3,
-        name: "Família",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Interestellar",
-    description:
-      'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy. Além de Cooper, a tripulação da Endurance é formada pela bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.',
-    rating: 5,
-    tags: [
-      {
-        id: 1,
-        name: "Ficção Científica",
-      },
-      {
-        id: 2,
-        name: "Drama",
-      },
-      {
-        id: 3,
-        name: "Família",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Interestellar",
-    description:
-      'Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma enorme estação espacial. A partida de Cooper devasta Murphy. Além de Cooper, a tripulação da Endurance é formada pela bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.',
-    rating: 0,
-    tags: [
-      {
-        id: 1,
-        name: "Ficção Científica",
-      },
-      {
-        id: 2,
-        name: "Drama",
-      },
-      {
-        id: 3,
-        name: "Família",
-      },
-    ],
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
+import { Input } from "../../components/Input";
+import avatarPlaceHolder from "../../assets/avatar_placeholder.svg";
+import unidecode from "unidecode";
 
 export function Home() {
+  const { signOut, user } = useAuth();
+  const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+
+
+  function handleSignOut() {
+    navigate("/");
+    signOut();
+  }
+
+  function handleProfile() {
+    navigate("/profile");
+  }
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceHolder;
+
+  function handleMoviePreview(id) {
+    navigate(`/movie-preview/${id}`);
+  }
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const response = await api.get(`/movies?title=`);
+      const moviesData = response.data.movieNotesWithTags;
+  
+      let filteredMovies = moviesData.filter((movie) => {
+        const movieTitleWithoutAccents = unidecode(movie.title.toLowerCase());
+        const searchWithoutAccents = unidecode(search.toLowerCase());
+  
+        // Verificar se o título ou alguma tag do filme contém o texto pesquisado
+        return (
+          movieTitleWithoutAccents.includes(searchWithoutAccents) ||
+          movie.tags.some((tag) => {
+            const tagWithoutAccents = unidecode(tag.name.toLowerCase());
+            return tagWithoutAccents.includes(searchWithoutAccents);
+          })
+        );
+      });
+      setMovies(filteredMovies);
+    }
+    fetchMovies();
+  }, [search]);
+
+
   return (
     <Container>
-      <Header />
+      <Header>
+        <HeaderContent>
+          <Link to="/" style={{ color: "#FF859B" }}>
+            <h1>RocketMovies</h1>
+          </Link>
+
+          <Input placeholder="Pesquise pelo título ou tag" onChange={(e) => setSearch(e.target.value)} />
+          <Profile>
+            <div>
+              <strong>{user.name}</strong>
+              <span onClick={handleSignOut}>sair</span>
+            </div>
+
+            <img src={avatarUrl} alt={user.name} onClick={handleProfile} />
+          </Profile>
+        </HeaderContent>
+      </Header>
       <Brand>
         <h1>Meus filmes</h1>
         <NewMovie>
@@ -100,8 +104,12 @@ export function Home() {
       </Brand>
       <Content>
         <main>
-          {movies.map((movie) => (
-            <Link to={`/movie-preview`} style={{ color: "#F4EDE8" }}>
+          {movies?.filter(movie => {
+          const movieTitleWithoutAccents = unidecode(movie.title.toLowerCase());
+          const searchWithoutAccents = unidecode(search.toLowerCase());
+          return movieTitleWithoutAccents.includes(searchWithoutAccents);
+        }).map((movie) => (
+            <Card onClick={() => handleMoviePreview(movie.id)} key={movie.id}>
               <Section>
                 <Title>{movie.title}</Title>
                 <Rating>
@@ -120,7 +128,7 @@ export function Home() {
                   ))}
                 </Tags>
               </Section>
-            </Link>
+            </Card>
           ))}
         </main>
       </Content>

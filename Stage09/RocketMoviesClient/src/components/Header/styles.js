@@ -31,7 +31,7 @@ export const Content = styled.div`
   gap: 64px;
 `;
 
-export const Profile = styled(Link)`
+export const Profile = styled.div`
   display: flex;
   align-items: center;
 
@@ -39,7 +39,7 @@ export const Profile = styled(Link)`
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    border: 1px solid ${({ theme }) => theme.COLORS.GRAY_600};
+    border: 1px solid ${({ theme }) => theme.COLORS.GRAY_600}; cursor: pointer;
   }
 
   > div {
@@ -53,6 +53,7 @@ export const Profile = styled(Link)`
     span {
       font-size: 14px;
       color: ${({ theme }) => theme.COLORS.GRAY_300};
+      cursor: pointer;
     }
 
     strong {
@@ -61,3 +62,4 @@ export const Profile = styled(Link)`
     }
   }
 `;
+

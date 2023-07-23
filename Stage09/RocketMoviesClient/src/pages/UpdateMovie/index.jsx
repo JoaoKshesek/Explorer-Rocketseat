@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -10,7 +10,9 @@ import { MovieItem } from "../../components/MovieItem";
 import { Container, Content, Form, Markers, Buttons } from "./styles";
 import { api } from "../../services/api";
 
-export function CreateMovie() {
+export function UpdateMovie() {
+  const [data, setData] = useState(null);
+  const params = useParams();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState("");
@@ -45,16 +47,36 @@ export function CreateMovie() {
         "Você deixou uma tag preenchida. Clique para adicionar ou deixe o campo vazio."
       );
     }
-
-    await api.post("/movies", {
+    await api.post(`/movies/update/${params.id}`, {
       title,
       rating,
       description,
       tags,
     });
-    alert("Filme criado com sucesso");
+    alert("Filme editado com sucesso");
     handleBack();
   }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover o filme?");
+    if (confirm) {
+      await api.delete(`/movies/${params.id}`)
+      navigate(-2);
+    }
+  }
+
+  useEffect(() => {
+    async function fetchNote() {
+      const response = await api.get(`/movies/${params.id}`);
+      setData(response.data);
+      setTitle(response.data.title);
+      setRating(response.data.rating);
+      setDescription(response.data.description);
+      setTags(response.data.tags.map((tag) => tag.name));
+    }
+    fetchNote();
+  }, [params.id]);
+  
 
   return (
     <Container>
@@ -71,10 +93,12 @@ export function CreateMovie() {
             <div>
               <Input
                 placeholder="Titulo"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
               <Input
                 isNumber
+                value={rating}
                 placeholder="Sua nota (de 0 a 5)"
                 onChange={(e) => setRating(e.target.value)}
               />
@@ -82,6 +106,7 @@ export function CreateMovie() {
 
             <Textarea
               placeholder="Observações"
+              defaultValue={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
@@ -106,7 +131,8 @@ export function CreateMovie() {
             </Markers>
 
             <Buttons>
-              <Button title="Salvar alterações" onClick={handleNewNote} style={{maxWidth: 536}} />
+              <Button title="Excluir filme" onClick={handleRemove}/>
+              <Button title="Salvar alterações" onClick={handleNewNote} />
             </Buttons>
           </Form>
         </main>

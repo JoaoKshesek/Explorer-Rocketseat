@@ -88,9 +88,11 @@ export const Markers = styled.div`
 `;
 
 export const Buttons = styled.div`
-  display: flex;
-  justify-content: end;
   Button {
     margin-top: 0;
+  }
+  Button:first-child {
+    color: ${({ theme }) => theme.COLORS.ROSE};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   }
 `;

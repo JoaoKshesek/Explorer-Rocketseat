@@ -45,7 +45,7 @@ export const Rating = styled.div`
 
 export const MovieHeader = styled.div`
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
 `;
 
 export const Info = styled.div`
@@ -55,7 +55,7 @@ export const Info = styled.div`
 export const InfoContent = styled.div`
   display: flex;
   gap: 8px;
-  align-items: center
+  align-items: center;
 `;
 export const Avatar = styled.div`
   > img {
@@ -71,4 +71,14 @@ export const Tags = styled.div`
 export const Description = styled.div`
   margin-top: 48px;
   text-align: justify;
+`;
+
+export const MovieHeaderInfo = styled.div`
+display: flex;
+  gap: 20px;
+`;
+
+
+export const Buttons = styled.div`
+  margin-right: 50px;
 `;
